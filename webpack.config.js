@@ -13,9 +13,10 @@ module.exports = {
     inline: true,
     port: 3000,
     hot: true,
-    publicPath: "/",
+    contentBase: "./src",
   },
   output: {
+    publicPath: "/",
     filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
   },

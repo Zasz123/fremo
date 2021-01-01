@@ -1,10 +1,11 @@
 import { createReducer } from "typesafe-actions";
 import { AuthState } from "./interface";
 import { AuthActions } from "./types";
-import { USER_LOGIN } from "./actions";
+import { USER_LOGIN, SWITCH_AUTH_TYPE } from "./actions";
 
 const initialState: AuthState = {
   token: "",
+  authMode: "REGISTER",
 };
 
 const reducer = createReducer<AuthState, AuthActions>(initialState, {
@@ -12,6 +13,12 @@ const reducer = createReducer<AuthState, AuthActions>(initialState, {
     return {
       ...state,
       token,
+    };
+  },
+  [SWITCH_AUTH_TYPE]: (state, { payload: { type } }) => {
+    return {
+      ...state,
+      authMode: type,
     };
   },
 });

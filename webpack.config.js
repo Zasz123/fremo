@@ -16,18 +16,27 @@ module.exports = {
     contentBase: "./src",
   },
   output: {
-    publicPath: "/",
     filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
+  mode: "none",
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
         loader: "ts-loader",
+      },
+      {
+        test: /\.(png|jpg|jpeg)/,
+        loader: "url-loader",
+      },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack", "url-loader"],
       },
     ],
   },
@@ -37,5 +46,10 @@ module.exports = {
       template: "./public/index.html",
     }),
     new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify(mode),
+      },
+    }),
   ],
 };

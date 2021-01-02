@@ -8,7 +8,7 @@ const App = () => {
   return (
     <Switch>
       <Route component={AuthPage} path="/auth" />
-      <Route component={() => <div>404 NOT FOUND</div>} />
+      <Route component={() => <div>404 NOT FOUND</div>} path="/notfound" />
     </Switch>
   );
 };

@@ -7,6 +7,8 @@ import LoginFormContainer from "../containers/auth/LoginFormContainer";
 
 import AuthTemplete from "../components/auth/authTemplete";
 import AuthWelcome from "../components/auth/authWelcome";
+import { AuthFormBlock } from "../components/auth/authForm";
+import AuthSwitch from "../components/auth/authSwitch";
 
 const AuthPage = () => {
   const { path } = useRouteMatch();
@@ -14,14 +16,17 @@ const AuthPage = () => {
   return (
     <AuthTemplete>
       <AuthWelcome />
-      <Switch>
-        <Route
-          exact
-          component={RegisterFormContainer}
-          path={`${path}/register`}
-        />
-        <Route exact component={LoginFormContainer} path={`${path}/login`} />
-      </Switch>
+      <AuthFormBlock>
+        <Switch>
+          <Route
+            exact
+            component={RegisterFormContainer}
+            path={`${path}/register`}
+          />
+          <Route exact component={LoginFormContainer} path={`${path}/login`} />
+        </Switch>
+        <AuthSwitch />
+      </AuthFormBlock>
     </AuthTemplete>
   );
 };

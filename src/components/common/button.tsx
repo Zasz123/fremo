@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const NormalButton = styled.button<{ width?: string }>`
+export const AuthButton = styled.button<{ width?: string }>`
   font-size: 20px;
   outline: none;
   cursor: pointer;

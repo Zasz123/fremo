@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Link } from "react-router-dom";
 
-import useStatus from "../../hooks/auth/useStatus";
+import { AuthType } from "../../types/auth/auth";
 
 const AuthSwitchButton = styled(Link)<{ $isRegister: boolean }>`
   display: block;
@@ -28,9 +28,11 @@ const AuthSwitchBlock = styled.div`
   justify-content: center;
 `;
 
-const AuthSwitch = () => {
-  const { authMode } = useStatus();
+interface IProps {
+  authMode: AuthType;
+}
 
+const AuthSwitch = ({ authMode }: IProps) => {
   return (
     <AuthSwitchBlock>
       <AuthSwitchButton

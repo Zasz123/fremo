@@ -2,10 +2,11 @@ import React from "react";
 
 import { ILoginForm } from "../../../types/auth/auth";
 
-import { NormalButton } from "../../common/button";
-import { NormalInput } from "../../common/input";
-import { AuthForm } from "../authForm";
+import { AuthButton } from "../../common/button";
+import { AuthInput } from "../../common/input";
+import { AuthForm, AuthInputsWrapper } from "../authForm";
 import { AuthTitle } from "../authTitle";
+import AuthSwitch from "../authSwitch";
 
 interface IProps {
   data: ILoginForm;
@@ -16,20 +17,23 @@ interface IProps {
 const LoginForm = ({ data, onChange, onLogin }: IProps) => {
   return (
     <AuthForm onSubmit={onLogin}>
-      <AuthTitle>로그인</AuthTitle>
-      <NormalInput
-        value={data.accountId}
-        name="accountId"
-        placeholder="ID"
-        onChange={onChange}
-      />
-      <NormalInput
-        value={data.password}
-        name="password"
-        placeholder="Password"
-        onChange={onChange}
-      />
-      <NormalButton type="submit">로그인</NormalButton>
+      <AuthInputsWrapper>
+        <AuthTitle>로그인</AuthTitle>
+        <AuthInput
+          value={data.accountId}
+          name="accountId"
+          placeholder="아이디"
+          onChange={onChange}
+        />
+        <AuthInput
+          value={data.password}
+          name="password"
+          placeholder="비밀번호"
+          onChange={onChange}
+        />
+        <AuthButton type="submit">로그인</AuthButton>
+      </AuthInputsWrapper>
+      <AuthSwitch authMode="LOGIN" />
     </AuthForm>
   );
 };

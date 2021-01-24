@@ -2,10 +2,11 @@ import React from "react";
 
 import { IRegisterForm } from "../../../types/auth/auth";
 
-import { NormalInput } from "../../common/input";
-import { NormalButton } from "../../common/button";
+import { AuthInput } from "../../common/input";
+import { AuthButton } from "../../common/button";
 import { AuthTitle } from "../authTitle";
-import { AuthForm } from "../authForm";
+import { AuthForm, AuthInputsWrapper } from "../authForm";
+import AuthSwitch from "../authSwitch";
 
 interface IProps {
   data: IRegisterForm;
@@ -16,32 +17,35 @@ interface IProps {
 const RegisterForm = ({ data, onChange, onRegister }: IProps) => {
   return (
     <AuthForm onSubmit={onRegister}>
-      <AuthTitle color="#4e4e4e">회원가입</AuthTitle>
-      <NormalInput
-        placeholder="ID"
-        value={data.accountId}
-        name="accountId"
-        onChange={onChange}
-      />
-      <NormalInput
-        placeholder="Password"
-        value={data.password}
-        name="password"
-        onChange={onChange}
-      />
-      <NormalInput
-        placeholder="Name"
-        value={data.name}
-        name="name"
-        onChange={onChange}
-      />
-      <NormalInput
-        placeholder="Email"
-        value={data.email}
-        name="email"
-        onChange={onChange}
-      />
-      <NormalButton type="submit">회원가입</NormalButton>
+      <AuthInputsWrapper>
+        <AuthTitle color="#4e4e4e">회원가입</AuthTitle>
+        <AuthInput
+          placeholder="아이디"
+          value={data.accountId}
+          name="accountId"
+          onChange={onChange}
+        />
+        <AuthInput
+          placeholder="비밀번호"
+          value={data.password}
+          name="password"
+          onChange={onChange}
+        />
+        <AuthInput
+          placeholder="이름"
+          value={data.name}
+          name="name"
+          onChange={onChange}
+        />
+        <AuthInput
+          placeholder="이메일"
+          value={data.email}
+          name="email"
+          onChange={onChange}
+        />
+        <AuthButton type="submit">회원가입</AuthButton>
+      </AuthInputsWrapper>
+      <AuthSwitch authMode="REGISTER" />
     </AuthForm>
   );
 };

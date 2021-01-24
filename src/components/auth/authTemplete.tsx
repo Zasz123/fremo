@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 
 const Block = styled.article`
   width: 100%;
-  box-shadow: 0px 0px 40px grey;
+  box-shadow: 0px 0px 50px grey;
   height: 600px;
 
   display: flex;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const NormalInput = styled.input<{ width?: string }>`
+export const AuthInput = styled.input<{ width?: string }>`
   outline: none;
   border: 1px solid #e2e2e2;
   border-radius: 5px;

@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpack = require("webpack");
+const Dotenv = require("dotenv-webpack");
 
 const mode = process.env.NODE_ENV || "development";
 
@@ -50,6 +51,10 @@ module.exports = {
       "process.env": {
         NODE_ENV: JSON.stringify(mode),
       },
+    }),
+    new Dotenv({
+      path: "./.env",
+      safe: true,
     }),
   ],
 };

@@ -20,9 +20,9 @@ const RegisterForm = ({ data, onChange, onRegister }: IProps) => {
       <AuthInputsWrapper>
         <AuthTitle color="#4e4e4e">회원가입</AuthTitle>
         <AuthInput
-          placeholder="아이디"
-          value={data.accountId}
-          name="accountId"
+          placeholder="이메일"
+          value={data.email}
+          name="email"
           onChange={onChange}
         />
         <AuthInput
@@ -30,17 +30,12 @@ const RegisterForm = ({ data, onChange, onRegister }: IProps) => {
           value={data.password}
           name="password"
           onChange={onChange}
+          type="password"
         />
         <AuthInput
           placeholder="이름"
-          value={data.name}
-          name="name"
-          onChange={onChange}
-        />
-        <AuthInput
-          placeholder="이메일"
-          value={data.email}
-          name="email"
+          value={data.nickName}
+          name="nickName"
           onChange={onChange}
         />
         <AuthButton type="submit">회원가입</AuthButton>

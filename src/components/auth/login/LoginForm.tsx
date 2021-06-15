@@ -20,8 +20,8 @@ const LoginForm = ({ data, onChange, onLogin }: IProps) => {
       <AuthInputsWrapper>
         <AuthTitle>로그인</AuthTitle>
         <AuthInput
-          value={data.accountId}
-          name="accountId"
+          value={data.email}
+          name="email"
           placeholder="아이디"
           onChange={onChange}
         />
@@ -30,6 +30,7 @@ const LoginForm = ({ data, onChange, onLogin }: IProps) => {
           name="password"
           placeholder="비밀번호"
           onChange={onChange}
+          type="password"
         />
         <AuthButton type="submit">로그인</AuthButton>
       </AuthInputsWrapper>

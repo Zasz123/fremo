@@ -1,12 +1,11 @@
 export interface IRegisterForm {
-  accountId: string;
-  password: string;
-  name: string;
   email: string;
+  password: string;
+  nickName: string;
 }
 
 export interface ILoginForm {
-  accountId: string;
+  email: string;
   password: string;
 }
 

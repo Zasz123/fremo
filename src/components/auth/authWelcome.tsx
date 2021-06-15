@@ -13,7 +13,6 @@ const AuthWelcomeBlock = styled.article`
 `;
 
 const WelcomeImage = styled.img`
-  border-radius: 100%;
   margin-bottom: 30px;
 
   width: 190px;

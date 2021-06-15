@@ -1,6 +1,6 @@
-import { get, post, patch, del } from "superagent";
+import axios from "axios";
 
-const serverUrl: string = process.env.SERVER_URL || "";
+const baseUrl: string = process.env.BASE_URL || "";
 
 function getHeader() {
   const token = localStorage.getItem("token");
@@ -11,25 +11,49 @@ function getHeader() {
 }
 
 async function getRequest(path: string) {
-  const result = await get(`${serverUrl}${path}`).set(getHeader());
+  const result = await axios.get(path, {
+    headers: getHeader(),
+    baseURL: baseUrl,
+  });
 
   return result;
 }
 
 async function postRequest(path: string, body: object) {
-  const result = await post(`${serverUrl}${path}`).set(getHeader()).send(body);
+  const result = await axios.post(
+    path,
+    {
+      ...body,
+    },
+    {
+      headers: getHeader(),
+      baseURL: baseUrl,
+    }
+  );
 
   return result;
 }
 
 async function patchRequest(path: string, body: object) {
-  const result = await patch(`${serverUrl}${path}`).set(getHeader()).send(body);
+  const result = await axios.patch(
+    path,
+    {
+      ...body,
+    },
+    {
+      headers: getHeader(),
+      baseURL: baseUrl,
+    }
+  );
 
   return result;
 }
 
 async function deleteRequest(path: string) {
-  const result = await del(`${serverUrl}${path}`).set(getHeader());
+  const result = await axios.delete(path, {
+    headers: getHeader(),
+    baseURL: baseUrl,
+  });
 
   return result;
 }

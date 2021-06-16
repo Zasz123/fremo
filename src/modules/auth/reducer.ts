@@ -6,12 +6,22 @@ import { USER_LOGIN } from "./actions";
 const initialState: AuthState = {
   token: "",
   authMode: "REGISTER",
+  isLoggedIn: false,
+  info: {
+    email: "",
+    nickName: "",
+  },
 };
 
 const reducer = createReducer<AuthState, AuthActions>(initialState, {
-  [USER_LOGIN]: (state, { payload: { token } }) => {
+  [USER_LOGIN]: (state, { payload: { token, email, nickName } }) => {
     return {
       ...state,
+      isLoggedIn: true,
+      info: {
+        email,
+        nickName,
+      },
       token,
     };
   },

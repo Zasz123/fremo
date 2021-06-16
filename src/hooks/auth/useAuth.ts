@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { ILoginForm, IRegisterForm } from "../../types/auth/auth";
 import { userLogin } from "../../modules/auth";
 import { loginRequest, registerRequest } from "../../lib/api/auth";
+import { getMyInfo } from "../../lib/api/user";
 
 export function useAuth() {
   const dispatch = useDispatch();
@@ -11,15 +12,23 @@ export function useAuth() {
   const login = useCallback(
     async (loginData: ILoginForm) => {
       const result = await (await loginRequest(loginData)).data;
-      const data = result.data;
 
       if (!result.success) {
         return false;
       }
 
+      const data = result.data;
+      const user = data.user;
+
       localStorage.setItem("token", data.token);
 
-      dispatch(userLogin(data.token));
+      dispatch(
+        userLogin({
+          token: data.token,
+          email: user.email,
+          nickName: user.nickName,
+        })
+      );
       return true;
     },
     [dispatch]
@@ -28,22 +37,49 @@ export function useAuth() {
   const register = useCallback(
     async (registerData: IRegisterForm) => {
       const result = await (await registerRequest(registerData)).data;
-      const data = result.data;
 
       if (!result.success) {
         return false;
       }
 
+      const data = result.data;
+      const user = data.user;
+
       localStorage.setItem("token", data.token);
 
-      dispatch(userLogin(data.token));
+      dispatch(
+        userLogin({
+          token: data.token,
+          email: user.email,
+          nickName: user.nickName,
+        })
+      );
       return true;
+    },
+    [dispatch]
+  );
+
+  const loginWithToken = useCallback(
+    async (token: string) => {
+      const result = await (await getMyInfo()).data;
+
+      if (!result.success) {
+        return false;
+      }
+
+      const user = result.data;
+      console.log(user);
+
+      dispatch(
+        userLogin({ token, email: user.email, nickName: user.nickName })
+      );
     },
     [dispatch]
   );
 
   return {
     login,
+    loginWithToken,
     register,
   };
 }

@@ -1,10 +1,29 @@
 import { useState } from "react";
 
-export default function useInputs<T>(initValue: T) {
+function useInput(initValue?: string) {
+  const [data, setData] = useState<string>(initValue || "");
+
+  const onChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setData(e.target.value);
+  };
+
+  return {
+    data,
+    setData,
+    onChange,
+  };
+}
+
+function useInputs<T>(initValue: T) {
   const [data, setData] = useState<T>(initValue);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
+
     setData({
       ...data,
       [name]: value,
@@ -17,3 +36,5 @@ export default function useInputs<T>(initValue: T) {
     onChange,
   };
 }
+
+export { useInput, useInputs };

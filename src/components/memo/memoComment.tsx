@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const MemoCommentWrapper = styled.div`
-  width: 35%;
-  padding-top: 90px;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
@@ -11,6 +10,7 @@ const MemoCommentWrapper = styled.div`
 
 const CommentInput = styled.textarea`
   width: 100%;
+  height: 150px;
   resize: none;
 
   border: solid 1px #949494;
@@ -18,7 +18,7 @@ const CommentInput = styled.textarea`
 
 const CommentSubmitButton = styled.button`
   width: 100%;
-  height: 80px;
+  height: 60px;
   cursor: pointer;
   color: white;
   background-color: ${({ theme }) => theme.mainColor};

@@ -44,6 +44,8 @@ const MemoContainer = () => {
       return;
     }
 
+    setComment("");
+
     await fetchRandomMemo();
   };
 

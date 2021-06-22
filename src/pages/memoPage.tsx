@@ -7,9 +7,11 @@ import MemoContainer from "../containers/memo/memoContainer";
 const MemoWrapper = styled.div`
   background-color: ${({ theme }) => theme.backgroundColor};
   width: 100%;
-  padding: 100px 110px;
+  padding: 100px 110px 20px;
 
   display: flex;
+
+  flex-direction: column;
 
   justify-content: space-between;
 `;

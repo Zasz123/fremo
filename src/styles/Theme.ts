@@ -1,4 +1,5 @@
 export default {
+  backgroundColor: "#fff",
   mainColor: "#95C7AE",
-  darkColor: "#09372f",
+  darkColor: "#6F9481",
 };

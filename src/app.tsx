@@ -4,6 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import { useAuth } from "./hooks/auth/useAuth";
 
 import AuthPage from "./pages/authPage";
+import MemoPage from "./pages/memoPage";
+import LandingPage from "./pages/landingPage";
 
 const App = () => {
   const { loginWithToken } = useAuth();
@@ -19,6 +21,8 @@ const App = () => {
   return (
     <Switch>
       <Route component={AuthPage} path="/auth" />
+      <Route component={MemoPage} path="/memo" />
+      <Route component={LandingPage} path="/" />
       <Route component={() => <div>404 NOT FOUND</div>} />
     </Switch>
   );

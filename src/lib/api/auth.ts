@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 
-import { IRegisterForm, ILoginForm } from "../../types/auth/auth";
-import { postRequest } from "../../utils/api";
+import { IRegisterForm, ILoginForm } from "../../types/user/user";
+import { postRequest } from "./api";
 
 export const registerRequest = async (registerData: IRegisterForm) => {
   const result: AxiosResponse = await postRequest("/user", registerData);

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Link } from "react-router-dom";
 
-import { AuthType } from "../../types/auth/auth";
+import { AuthType } from "../../types/user/user";
 
 const AuthSwitchButton = styled(Link)<{ $isRegister: boolean }>`
   display: block;

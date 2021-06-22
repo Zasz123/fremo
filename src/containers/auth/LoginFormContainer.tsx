@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 
-import useInputs from "../../hooks/common/useInputs";
+import { useInputs } from "../../hooks/common/useInputs";
 
-import { ILoginForm } from "../../types/auth/auth";
+import { ILoginForm } from "../../types/user/user";
 
 import LoginForm from "../../components/auth/login/LoginForm";
 import { useAuth } from "../../hooks/auth/useAuth";
@@ -35,15 +35,6 @@ const LoginFormContainer = () => {
     history.push("/");
     alert("로그인에 성공했습니다.");
   };
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (token !== null) {
-      alert("이미 로그인 하셨습니다.");
-      history.push("/");
-    }
-  }, []);
 
   return <LoginForm data={data} onChange={onChange} onLogin={onLogin} />;
 };

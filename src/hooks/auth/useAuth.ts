@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 
-import { ILoginForm, IRegisterForm } from "../../types/auth/auth";
+import { ILoginForm, IRegisterForm } from "../../types/user/user";
 import { userLogin } from "../../modules/auth";
 import { loginRequest, registerRequest } from "../../lib/api/auth";
 import { getMyInfo } from "../../lib/api/user";
@@ -68,7 +68,6 @@ export function useAuth() {
       }
 
       const user = result.data;
-      console.log(user);
 
       dispatch(
         userLogin({ token, email: user.email, nickName: user.nickName })

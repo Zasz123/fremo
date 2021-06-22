@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ILoginForm } from "../../../types/auth/auth";
+import { ILoginForm } from "../../../types/user/user";
 
 import { AuthButton } from "../../common/button";
 import { AuthInput } from "../../common/input";

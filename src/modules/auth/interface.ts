@@ -1,4 +1,4 @@
-import { AuthType } from "../../types/auth/auth";
+import { AuthType } from "../../types/user/user";
 
 export interface AuthState {
   token: string;

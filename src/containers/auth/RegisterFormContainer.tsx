@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import useInputs from "../../hooks/common/useInputs";
+import { useInputs } from "../../hooks/common/useInputs";
 
-import { IRegisterForm } from "../../types/auth/auth";
+import { IRegisterForm } from "../../types/user/user";
 
 import RegisterForm from "../../components/auth/register/RegisterForm";
 import { useAuth } from "../../hooks/auth/useAuth";
@@ -36,15 +36,6 @@ const RegisterFormContainer = () => {
     history.push("/");
     alert("회원가입에 성공했습니다.");
   };
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (token !== null) {
-      alert("이미 로그인 하셨습니다.");
-      history.push("/");
-    }
-  }, []);
 
   return (
     <RegisterForm data={data} onChange={onChange} onRegister={onRegister} />

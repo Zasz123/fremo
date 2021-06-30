@@ -73,9 +73,25 @@ export function useAuth() {
     [dispatch]
   );
 
+  const silentRefresh = useCallback(async () => {
+    const result = await (await postRequest("/user/silent-refresh")).data;
+
+    if (!result.success) {
+      return false;
+    }
+
+    const user = result.data.user;
+    const token = result.data.token;
+
+    dispatch(userLogin({ token, email: user.email, nickName: user.nickName }));
+    return true;
+  }, []);
+
   return {
     login,
     loginWithToken,
     register,
+    silentRefresh,
+    isLoading,
   };
 }

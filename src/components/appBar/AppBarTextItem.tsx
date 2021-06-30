@@ -15,13 +15,24 @@ const TextButton = styled.button`
 
 interface IProps {
   title: string;
-  path: string;
+  path?: string;
+  onClickButton?: () => void;
 }
 
-const AppBarTextItem = ({ title, path }: IProps) => {
+const AppBarTextItem = ({ title, path, onClickButton }: IProps) => {
   const history = useHistory();
 
-  return <TextButton onClick={() => history.push(path)}>{title}</TextButton>;
+  const onClick = () => {
+    if (path !== undefined) {
+      history.push(path);
+    }
+
+    if (onClickButton !== undefined) {
+      onClickButton();
+    }
+  };
+
+  return <TextButton onClick={onClick}>{title}</TextButton>;
 };
 
 export default AppBarTextItem;

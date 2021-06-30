@@ -87,11 +87,23 @@ export function useAuth() {
     return true;
   }, []);
 
+  const logout = useCallback(async () => {
+    const result = await (await getRequest("/user/logout")).data;
+
+    if (!result.success) {
+      return false;
+    }
+
+    dispatch(userLogout());
+    return true;
+  }, []);
+
   return {
     login,
     loginWithToken,
     register,
     silentRefresh,
+    logout,
     isLoading,
   };
 }

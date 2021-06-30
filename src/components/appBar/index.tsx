@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import useStatusAuth from "../../hooks/auth/useStatus";
+import { useAuth } from "../../hooks/auth/useAuth";
 
 import AppBarMainIcon from "./AppBarMainIcon";
 import AppBarTextItem from "./AppBarTextItem";
@@ -30,6 +31,7 @@ const AppBarAccountInfoWrapper = styled.div``;
 
 const AppBar = () => {
   const { info, isLoggedIn } = useStatusAuth();
+  const { logout } = useAuth();
 
   return (
     <AppBarBlock>
@@ -43,11 +45,11 @@ const AppBar = () => {
         {isLoggedIn ? (
           <>
             <AppBarTextItem title={info.nickName} path="/" />
-            <AppBarTextItem title="로그아웃" path="/" />
+            <AppBarTextItem title="로그아웃" onClickButton={logout} />
           </>
         ) : (
           <>
-            <AppBarTextItem title="로그인" path="/auth/login" />{" "}
+            <AppBarTextItem title="로그인" path="/auth/login" />
             <AppBarTextItem title="회원가입" path="/auth/register" />
           </>
         )}

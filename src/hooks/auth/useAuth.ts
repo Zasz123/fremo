@@ -2,16 +2,17 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 
 import { ILoginForm, IRegisterForm } from "../../types/user/user";
-import { userLogin } from "../../modules/auth";
-import { loginRequest, registerRequest } from "../../lib/api/auth";
-import { getMyInfo } from "../../lib/api/user";
+import { userLogin, userLogout } from "../../modules/auth";
+import useRequest from "../../hooks/api/useRequest";
 
 export function useAuth() {
   const dispatch = useDispatch();
 
+  const { isLoading, postRequest, getRequest } = useRequest();
+
   const login = useCallback(
     async (loginData: ILoginForm) => {
-      const result = await (await loginRequest(loginData)).data;
+      const result = await (await postRequest("/user/login", loginData)).data;
 
       if (!result.success) {
         return false;
@@ -19,8 +20,6 @@ export function useAuth() {
 
       const data = result.data;
       const user = data.user;
-
-      localStorage.setItem("token", data.token);
 
       dispatch(
         userLogin({
@@ -36,7 +35,7 @@ export function useAuth() {
 
   const register = useCallback(
     async (registerData: IRegisterForm) => {
-      const result = await (await registerRequest(registerData)).data;
+      const result = await (await postRequest("/user", registerData)).data;
 
       if (!result.success) {
         return false;
@@ -44,8 +43,6 @@ export function useAuth() {
 
       const data = result.data;
       const user = data.user;
-
-      localStorage.setItem("token", data.token);
 
       dispatch(
         userLogin({
@@ -61,7 +58,7 @@ export function useAuth() {
 
   const loginWithToken = useCallback(
     async (token: string) => {
-      const result = await (await getMyInfo()).data;
+      const result = await (await getRequest("/user")).data;
 
       if (!result.success) {
         return false;
@@ -76,9 +73,37 @@ export function useAuth() {
     [dispatch]
   );
 
+  const silentRefresh = useCallback(async () => {
+    const result = await (await postRequest("/user/silent-refresh")).data;
+
+    if (!result.success) {
+      return false;
+    }
+
+    const user = result.data.user;
+    const token = result.data.token;
+
+    dispatch(userLogin({ token, email: user.email, nickName: user.nickName }));
+    return true;
+  }, []);
+
+  const logout = useCallback(async () => {
+    const result = await (await getRequest("/user/logout")).data;
+
+    if (!result.success) {
+      return false;
+    }
+
+    dispatch(userLogout());
+    return true;
+  }, []);
+
   return {
     login,
     loginWithToken,
     register,
+    silentRefresh,
+    logout,
+    isLoading,
   };
 }

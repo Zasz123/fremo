@@ -1,10 +1,10 @@
 import { createReducer } from "typesafe-actions";
 import { AuthState } from "./interface";
 import { AuthActions } from "./types";
-import { USER_LOGIN } from "./actions";
+import { USER_LOGIN, USER_LOGOUT } from "./actions";
 
 const initialState: AuthState = {
-  token: "",
+  token: null,
   authMode: "REGISTER",
   isLoggedIn: false,
   info: {
@@ -23,6 +23,18 @@ const reducer = createReducer<AuthState, AuthActions>(initialState, {
         nickName,
       },
       token,
+    };
+  },
+  [USER_LOGOUT]: (state, _) => {
+    return {
+      ...state,
+      token: null,
+      isLoggedIn: false,
+      authMode: "LOGIN",
+      info: {
+        email: "",
+        nickName: "",
+      },
     };
   },
 });

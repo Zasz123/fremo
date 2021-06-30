@@ -4,7 +4,7 @@ import { AuthActions } from "./types";
 import { USER_LOGIN } from "./actions";
 
 const initialState: AuthState = {
-  token: "",
+  token: null,
   authMode: "REGISTER",
   isLoggedIn: false,
   info: {

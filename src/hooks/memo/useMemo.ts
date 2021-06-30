@@ -1,14 +1,16 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 
-import { getRandomMemoRequest } from "../../lib/api/memo";
+import useRequest from "../api/useRequest";
+
 import { fetchRandomMemo } from "../../modules/memo";
 
 export function useMemo() {
   const dispatch = useDispatch();
+  const { getRequest } = useRequest();
 
   const getRandomMemo = useCallback(async () => {
-    const result = await (await getRandomMemoRequest()).data;
+    const result = await (await getRequest("/memo")).data;
 
     const isSuccess = result.success;
 
